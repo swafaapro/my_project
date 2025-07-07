@@ -1,0 +1,25 @@
+<?php
+session_start();
+$email = $_SESSION['reset_email'] ?? '';
+
+if (!$email) {
+    header("Location: admin_forgot_password.php");
+    exit();
+}
+
+// Generate 6-digit code
+$code = rand(100000, 999999);
+$_SESSION['reset_code'] = $code;
+
+// Send email
+$subject = "Your Admin Password Reset Code";
+$message = "Hello,\n\nUse the following verification code to reset your password: $code\n\nIf you did not request this, please ignore.";
+$headers = "From: no-reply@laundry.com";
+
+if (mail($email, $subject, $message, $headers)) {
+    header("Location: admin_verify_code.php");
+    exit();
+} else {
+    echo "Failed to send verification code.";
+}
+?>

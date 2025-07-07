@@ -1,0 +1,117 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+    }
+    header {
+      background-color: #343a40;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    nav ul li {
+      margin-left: 20px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #ffc107;
+    }
+    .container {
+      padding: 30px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .message {
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    form {
+      margin-top: 20px;
+    }
+    form input, form button {
+      padding: 8px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    form button {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🧺 Laundry Admin Panel</div>
+  <nav>
+    <ul>
+      <li><a href="admin_dashboard.php">Dashboard</a></li>
+      <li><a href="admin_analytics.php">Reports</a></li>
+      <li><a href="#">Settings</a></li> <!-- placeholder future menu -->
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Welcome, <?= htmlspecialchars($_SESSION['admin_username']) ?></h2>
+
+  <h3>Customer Orders</h3>
+  <?php if (!empty($admin_message)): ?>
+    <p class="message <?= strpos($admin_message, 'successfully') !== false ? 'success' : 'error' ?>">
+      <?= htmlspecialchars($admin_message) ?>
+    </p>
+  <?php endif; ?>
+
+  <h3>Add New Admin</h3>
+  <?php if (isset($admin_message)) echo "<p class='message'>$admin_message</p>"; ?>
+  <form method="post">
+    <input type="text" name="new_admin_username" placeholder="New admin username" required>
+    <input type="password" name="new_admin_password" placeholder="New admin password" required>
+    <button type="submit" name="add_admin">Add Admin</button>
+  </form>
+</div>
+
+</body>
+</html>
