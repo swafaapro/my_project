@@ -132,7 +132,7 @@
                 <li>Convenience: Timely pickup and delivery services.</li>
                 <li>Trust: Consistent quality and honest service.</li>
                 <li>Community: Creating jobs and supporting ethical business practices.</li>
-            </ul>
+            </ul> 
             <p>Our goal is not just to clean clothes—it’s to create a service experience that brings comfort, confidence, and peace of mind to every customer we serve.</p>
         </div>
 
